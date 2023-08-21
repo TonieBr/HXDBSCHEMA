@@ -1,0 +1,1016 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="SqlServer" id="Project-3d5" database="SqlServer" >
+	<schema name="dbo" catalogname="HiX_Test" >
+		<table name="TRIAL_ADVERSEEVENT" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="ISRELEVANTTOTRIAL" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ADVERSEEVENTTYPECODE" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="SIDEEFFECTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARTICIPANTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INCIDENTONDATE" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="INCIDENTONTIME" type="nvarchar" length="5" decimal="0" jt="12" />
+			<column name="REGISTEREDONDATE" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="REGISTEREDONTIME" type="nvarchar" length="5" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTCLASSID" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="ORDERWORKFLOWSTATUS" type="nvarchar" length="8" decimal="0" jt="12" />
+			<column name="ORDERWORKFLOW" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="EndDateTime" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="DATADEFINITION" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MANUALLYADDED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="REVIEWED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_ADVERSEEVENT_Index" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_ADVERSEEVENT_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_ADVERSEEVENT_TRIAL_PARTICIPANT" to_schema="HiX_Test.dbo" to_table="TRIAL_PARTICIPANT" >
+				<fk_column name="PARTICIPANTCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_ADVERSE_INDIC" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="ADVERSEEVENTID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="IncidentOn" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="EndDateTime" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="LINKEDOBJECTCLASSID" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="DATADEFINITION" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_ADVERSE_INDIC_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_ADVERSE_INDIC_TRIAL_ADVERSEEVENT" to_schema="HiX_Test.dbo" to_table="TRIAL_ADVERSEEVENT" >
+				<fk_column name="ADVERSEEVENTID" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATADEF" row_count="8" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PredefinedDataDefinitionSetId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PREDEFINEDDATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ISADVANCEDDEFINITION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ISADVERSEEVENTDEFINITION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DEVIATINGICONGUID" type="nvarchar" length="38" decimal="0" jt="12" />
+			<column name="CUSTOMORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="GENERICTEMPLATEID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="OrderIndex" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="MergeSimiliarIndicationsWithinDurationId" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="USECUSTOMDESCRIPTION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ADVERSEEVENTDESCRIPTIONRELATIONDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="HASCUSTOMNAME" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_DATADEF_TRIALDADEF" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_DATADEF_PredefinedDataDefinitionSetId" unique="UNIQUE_INDEX" >
+				<column name="PredefinedDataDefinitionSetId" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_DATADEF_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATADPAR" row_count="13" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALDATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PREDEFINEDDATADEFINITIONPARAMETERDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARAMETERRELATIONDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DATADPAR_TRIDATDEFPAR" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_DATADPAR_TRIAL_DATADEF" to_schema="HiX_Test.dbo" to_table="TRIAL_DATADEF" >
+				<fk_column name="TRIALDATADEFINITIONCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATADSUB" row_count="1" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALDATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="OBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="OBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="USEINEXPORT" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_DATADSUB_TRIDFSBITM" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_DATADSUB_TRIAL_DATADEF" to_schema="HiX_Test.dbo" to_table="TRIAL_DATADEF" >
+				<fk_column name="TRIALDATADEFINITIONCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATAIGN" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARTICIPANTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="RESULTOBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="RESULTOBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DATAIGN_TRLIGNRES" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_DATAIGN_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_DATAIGN_TRIAL_DATADEF" to_schema="HiX_Test.dbo" to_table="TRIAL_DATADEF" >
+				<fk_column name="DATADEFINITIONCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATARES" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARTICIPANTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="VISITPARTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="RESULTASSTRING" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="RESULTSTATECODE" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="SEARCHSTATECODE" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="RESULTFOUNDON" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="RESULTOBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="RESULTOBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DATARES_TRRESIND" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_DATARES_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_DATARES_TRIAL_DATADEF" to_schema="HiX_Test.dbo" to_table="TRIAL_DATADEF" >
+				<fk_column name="DATADEFINITIONCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_DATASETINGS" row_count="15" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="OBJECTLOGICTYPECODE" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="MOSTINTERESTINGFIELDPATH" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DATASETINGS_TRIEXPIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_DATDEFCAT" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="PARENTCATEGORYCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DATDEFCAT_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_DDLINK" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="LinkedObjectClassId" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="LinkedObjectId" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="DATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DDLINK_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_DDLINK_LinkedObjectIndex" unique="UNIQUE_INDEX" >
+				<column name="LinkedObjectClassId" />
+				<column name="LinkedObjectId" />
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_DFIELD" row_count="48" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALPREDEFINEDDATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="FIELDPATH" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="SEQUENCENUMBER" type="nvarchar" length="20" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DFIELD_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_DSETRESLNK" row_count="0" >
+			<column name="Id" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="PredefinedDataDefinitionSetId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ResearchId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_DSETRESLNK_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+			<index name="idx_TRIAL_DSETRESLNK_PredefinedDataDefinitionSetId" unique="UNIQUE_INDEX" >
+				<column name="PredefinedDataDefinitionSetId" />
+				<column name="Id" />
+			</index>
+		</table>
+		<table name="TRIAL_EXPRTFLD" row_count="33" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DATATYPEEXPORTSETTINGSCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="FIELDPATH" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DESCRIPTIONRELATIONDERIVATESTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="ShouldHideExportFieldStorage" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_EXPRTFLD_EXPVLIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_GROUP" row_count="3" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="DESCRIPTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MAXIMUMNUMBEROFPARTICIPANTS" type="int" length="10" decimal="0" jt="4" />
+			<column name="MINIMUMNUMBEROFPARTICIPANTS" type="int" length="10" decimal="0" jt="4" />
+			<index name="idx_TRIAL_GROUP_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_GROUP_INDGRTRI" unique="UNIQUE_INDEX" >
+				<column name="TRIALCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_GROUP_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_LOCLNK" row_count="4" >
+			<column name="ID" type="nvarchar" length="13" decimal="0" jt="12" mandatory="y" />
+			<column name="LocationCode" type="nvarchar" length="3" decimal="0" jt="12" />
+			<column name="ClinicalTrialCode" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_LOCLNK_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_LOCLNK_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="ClinicalTrialCode" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_METINGDATA" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="METINGPARAMETERCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ORIGINALMETINGCODE" type="int" length="10" decimal="0" jt="4" />
+			<index name="idx_TRIAL_METINGDATA_TRIMETIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_PARAM" row_count="16" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="CLINICALTRIAL" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARAMETERDEFINITION" type="nvarchar" length="13" decimal="0" jt="12" />
+			<column name="ValueStream" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PARAM_TRIAL_TRIPARAM" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PARAM_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="CLINICALTRIAL" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PARTICIPANT" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="GROUPCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="RandomizationResultItemId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ENTEREDTRIALAT" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="TREATMENTSTARTEDAT" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="LEFTTRIALAT" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="CompletedOn" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="StartedOn" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="DeclinedOn" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="InformedConsentGivenAt" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="InformedConsentGivenWithdrawnAt" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="ANONYMOUSIDENTIFIER" type="nvarchar" length="30" decimal="0" jt="12" />
+			<column name="REASONOFLEAVING" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="INFORMEDCONSENTANSWERSETCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INTERNALPATIENTCODE" type="nvarchar" length="13" decimal="0" jt="12" />
+			<column name="LASTSEARCHEDFORRESULTONDATE" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="LASTSEARCHEDFORRESULTONTIME" type="nvarchar" length="5" decimal="0" jt="12" />
+			<column name="ManualInformedConsent" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="WORKFLOWSTATUS" type="nvarchar" length="8" decimal="0" jt="12" />
+			<column name="WORKFLOW" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="REASONFORINCLUDING" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="EPISODETRAJECTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="EPISODETRAJECTTRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARTICIPATIONSTATECODE" type="nvarchar" length="8" decimal="0" jt="12" />
+			<column name="InclusionResultCode" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ImportedFromEpisode" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="IsImported" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="Deceased" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ManuallyAdded" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="OwnerCompanyCode" type="nvarchar" length="3" decimal="0" jt="12" />
+			<column name="CompanyCombinationId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PARTICIPANT_TRIDELNM" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PARTICIPANT_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_PARTICIPANT_TRIAL_GROUP" to_schema="HiX_Test.dbo" to_table="TRIAL_GROUP" >
+				<fk_column name="GROUPCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PATCOL" row_count="3" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="LINKEDOBJECTCLASSID" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTCODE" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="PATIENTCOLLECTIONTRIALDEFINITION" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PATCOL_TRIAL_SIMREPU" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_PATCOLDEF" row_count="12" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="REPORTLINKSTREAM" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="PatientFieldPath" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PATCOLDEF_TRIAL_SELREP" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_PATSOU" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="SOURCEOBJECTCLASSID" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="SOURCEOBJECTCODE" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="ParticipantCode" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PATSOU_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PATSOU_TRIAL_PARTICIPANT" to_schema="HiX_Test.dbo" to_table="TRIAL_PARTICIPANT" >
+				<fk_column name="ParticipantCode" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PDDATAPA" row_count="37" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="TRIALPREDEFINEDDATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="FIELDTYPECODE" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="OBJECTLOGICTYPECODE" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="LookUpValueDerivationStream" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DOMAINPARAMETER" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ONLYFIXEDVALUE" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PDDATAPA_TRPRDPDIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_PHASE" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="DESCRIPTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ISPRELIMINARYPHASE" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PHASE_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_PHASE_INDXTRIPD" unique="UNIQUE_INDEX" options="clustered" >
+				<column name="TRIALCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PHASE_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PHASEGROUPJOIN" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="PHASECODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ORDER" type="int" length="10" decimal="0" jt="4" />
+			<column name="OrderIndex" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="GROUPCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="STARTNEXTPHASEOPTIONCODE" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="CUSTOMORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PHASEGROUPJOIN_TRIALPDGLI" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PHASEGROUPJOIN_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PHASEP" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DEFINITIONGROUPLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARTICIPANTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="STARTDATE" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="ISCOMPLETED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PHASEP_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_PHASEP_TRINDPHAS" unique="UNIQUE_INDEX" >
+				<column name="TRIALCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_PHASEP_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_PPCS" row_count="3" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="CleanUpOlderThanID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="DeleteParticipants" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CheckIfParticipantMatchesCriteria" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="KeepManuallyAddedParticipants" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PPCS_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_PRDADESET" row_count="0" >
+			<column name="Id" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="Name" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="Description" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="IsRestrictive" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="Deprecated" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_PRDADESET_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="Id" />
+			</index>
+		</table>
+		<table name="TRIAL_PRDATADEF" row_count="22" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="Description" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="OBJECTLOGICTYPECODE" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="RELATIONENDDATETIMEDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="RELATIONRESULTDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="TAKEFROMCOLLECTIONCODE" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="SIGNALINGMODECODE" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="STARTDATETIMEFIELD" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DISABLED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="TRIALDATAOBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="OBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="USEFORADVERSEEVENT" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DBCDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="SUBITEMSDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="SUBITEMRESULTDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DEFINITIONCLASSID" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="ConvertSourceDerivationStream" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="TEMPLATE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="ITEMDESCRIPTIONEXPRESSION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="IMAGEGUID" type="nvarchar" length="38" decimal="0" jt="12" />
+			<column name="CONSULTCATEGORY" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CATEGORYCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="CustomNameRelationDerivationStream" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_PRDATADEF_Index" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_RESULT" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="PARTICIPANTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PHASECODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="RESULTOBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="RESULTOBJECTID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<index name="idx_TRIAL_RESULT_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_RESULT_ParticipantIndex" unique="UNIQUE_INDEX" >
+				<column name="PARTICIPANTCODE" />
+				<column name="PHASECODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_RESULT_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_SIDEEFFECT" row_count="1" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="COURSEOFACTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="Comment" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SIDEEFFECT_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_SIDEEFFECT_TRIALBWINDEX" unique="UNIQUE_INDEX" >
+				<column name="TRIALCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_SIDEEFFECT_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_SIMORDL" row_count="22" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="SIMPLEORDERLINKDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="LINKEDOBJECTCODE" type="nvarchar" length="100" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SIMORDL_TRSMPIND" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_SIMORDL_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="ID" pk="ADVERSEEVENTRESEARCHORDER" />
+			</fk>
+		</table>
+		<table name="TRIAL_SIMPAR" row_count="2" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="SIMPLEREPORTDEFINITION" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PARAMETERDEFINITION" type="nvarchar" length="13" decimal="0" jt="12" />
+			<column name="ValueStream" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SIMPAR_TRIAL_SIMREPU" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_SOLDEF" row_count="1" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="250" decimal="0" jt="12" />
+			<column name="ORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="OrderLinkTypeCode" type="nvarchar" length="3" decimal="0" jt="12" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_SOLDEF_TRIAL_SIMIND" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_SOLPAR" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALSIMPLEORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="SIMPLEORDERLINKPARAMETERDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="USESIMPLEPARAMETER" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="USERELATIONDERIVATION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="SELECTEDSIMPLEPARAMETERCLASSID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="SELECTEDSIMPLEPARAMETERID" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="PARAMETERRELATIONDERIVATIONSTORAGE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SOLPAR_OLPARTRIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_SORDPARD" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="SIMPLEORDERLINKDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="FIELDTYPECODE" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="OBJECTLOGICTYPECODE" type="nvarchar" length="20" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SORDPARD_SIORLPARTR" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_SPECLNK" row_count="6" >
+			<column name="ID" type="nvarchar" length="13" decimal="0" jt="12" mandatory="y" />
+			<column name="SpecialismCode" type="nvarchar" length="5" decimal="0" jt="12" />
+			<column name="ClinicalTrialCode" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_SPECLNK_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_SPECLNK_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="ClinicalTrialCode" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_TEMPGROUP" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TrialTypeId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="NAME" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="DESCRIPTION" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="MINPARTICIPANTS" type="float" length="53" decimal="0" jt="8" />
+			<column name="MAXPARTICIPANTS" type="float" length="53" decimal="0" jt="8" />
+			<index name="idx_TRIAL_TEMPGROUP_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_TEMPGROUP_TRIAL_TYPE" to_schema="HiX_Test.dbo" to_table="TRIAL_TYPE" >
+				<fk_column name="TrialTypeId" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_TRIAL" row_count="4" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="STARTDATE" type="datetime" length="23" decimal="3" jt="92" />
+			<column name="NAME" type="nvarchar" length="40" decimal="0" jt="12" />
+			<column name="LONGNAME" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="DESCRIPTION" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="CAUSE" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="GOAL" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="IDRANGESTART" type="int" length="10" decimal="0" jt="4" />
+			<column name="CATEGORYCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALTYPE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PATIENTSHOULDBEANONYMOUS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="OPENFORNEWPARTICIPANTS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ISRANDOMISED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="SEARCHFORRESULTS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CRITERIASET" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALSTATUSCODE" type="nvarchar" length="7" decimal="0" jt="12" />
+			<column name="REPORTLINKSTREAM" type="nvarchar(max)" length="0" decimal="0" jt="12" />
+			<column name="OUTPUTDEFINITIONID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INFORMEDCONSENTQUESTIONNAIREID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INFORMEDCONSENTQUESTIONNAIREQUESTIONID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INFORMEDCONSENTQUESTIONNAIREDATEQUESTIONID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="INFORMEDCONSENTQUESTIONNAIRETIMEQUESTIONID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ADVERSEEVENTQUESTIONNAIREID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DCRREGISTRATIONTYPEID" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="CODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DEFLINKID" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="EPISODETRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ADVERSEEVENTRESEARCHORDER" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="RandomizationDefinitionId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ContactCode" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="PossibleParticipantsCleanupSettingsId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="IdentifierLength" type="int" length="10" decimal="0" jt="4" />
+			<column name="IdentifierPaddingCharacter" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="IdentifierPrefix" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="IdentifierSuffix" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="PseudonymizationProtocolId" type="nvarchar" length="3" decimal="0" jt="12" />
+			<column name="EndDate" type="datetime" length="23" decimal="3" jt="92" />
+			<index name="idx_TRIAL_TRIAL_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="unq_TRIAL_TRIAL_TRIALTYPE" unique="UNIQUE_KEY" >
+				<column name="TRIALTYPE" />
+			</index>
+			<index name="unq_TRIAL_TRIAL_ADVERSEEVENTRESEARCHORDER" unique="UNIQUE_KEY" >
+				<column name="ADVERSEEVENTRESEARCHORDER" />
+			</index>
+			<fk name="fk_TRIAL_TRIAL_TRIAL_TRIALCAT" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIALCAT" >
+				<fk_column name="CATEGORYCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_TRIAL_TRIAL_PPCS" to_schema="HiX_Test.dbo" to_table="TRIAL_PPCS" >
+				<fk_column name="ContactCode" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_TRIALCAT" row_count="1" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="PARENTCATEGORYCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_TRIALCAT_TRIALCAT" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_TRIALREGNUM" row_count="6" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="IDENTIFIERTYPECODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="IDENTIFIER" type="nvarchar" length="80" decimal="0" jt="12" />
+			<index name="idx_TRIAL_TRIALREGNUM_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_TRIALREGNUM_TINDNUM" unique="UNIQUE_INDEX" >
+				<column name="TRIALCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_TRIALREGNUM_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+			<fk name="fk_TRIAL_TRIALREGNUM_TRIAL_TYPE" to_schema="HiX_Test.dbo" to_table="TRIAL_TYPE" >
+				<fk_column name="IDENTIFIERTYPECODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_TRTYPE" row_count="3" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar" length="80" decimal="0" jt="12" />
+			<index name="idx_TRIAL_TRTYPE_TRTYPIN" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_TYPE" row_count="5" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="NAME" type="nvarchar" length="100" decimal="0" jt="12" />
+			<column name="CANUSEFINANCIAL" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CANUSEPHASING" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CANUSEADVERSEEVENTS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CANUSECUSTOMAUTHORIZATION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="AUTOMATICALLYADDPOSSIBLEPARTICIPANTS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ACTIVEPARTICIPATION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="POSSIBLEPARTICIPATION" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CREATEADVERSEEVENTIFDECEASED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CANUSEDECEASEDPATIENTS" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DEPRECATED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TEMPCRIT" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_TYPE_TRIAL_SELREP" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_TYPE_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="ID" pk="TRIALTYPE" />
+			</fk>
+		</table>
+		<table name="TRIAL_USINRL" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="RoleId" type="nvarchar" length="3" decimal="0" jt="12" />
+			<column name="TrialId" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ZisUserId" type="nvarchar" length="8" decimal="0" jt="12" />
+			<column name="ZisGroupId" type="nvarchar" length="6" decimal="0" jt="12" />
+			<column name="CanNotEditParticipant" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="CanNotIncludeParticipant" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_USINRL_TRIND" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_USINRL_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TrialId" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_VISITD" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="MAINPARTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="SEARCHAFTERCODE" type="nvarchar" length="2" decimal="0" jt="12" />
+			<column name="PHASEDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ORDER" type="int" length="10" decimal="0" jt="4" />
+			<column name="MINIMALDURATIONAFTERPREVIOUSVISITVALUE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MINIMALDURATIONAFTERPREVIOUSVISITUNIT" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="MAXIMUMDURATIONAFTERPREVIOUSVISITVALUE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MAXIMUMDURATIONAFTERPREVIOUSVISITUNIT" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="SIMPLEORDERLINKCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_VISITD_TRIALVDI" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_VISITP" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="PHASECODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="DEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="LASTVISIT" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ForcedCompleted" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="VISITCANCELED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="VISITSTARTED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ALLPARTSAREDONE" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="SIGNALEDFORRESEARCHED" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<index name="idx_TRIAL_VISITP_TRVISIND" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+		</table>
+		<table name="TRIAL_VISITPD" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DESCRIPTION" type="nvarchar" length="50" decimal="0" jt="12" />
+			<column name="VISITDEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="SEARCHAFTERCODE" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="SEARCHAFTERPARTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="OBJECTLOGICTYPECODE" type="nvarchar" length="20" decimal="0" jt="12" />
+			<column name="MAINPART" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DATADEFINITIONCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MINIMALDURATIONAFTERMAINPARTVALUE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MINIMALDURATIONAFTERMAINPARTUNIT" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="MAXIMUMDURATIONAFTERMAINPARTVALUE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="MAXIMUMDURATIONAFTERMAINPARTUNIT" type="nvarchar" length="1" decimal="0" jt="12" />
+			<column name="FINANCIALMODE" type="nvarchar" length="3" decimal="0" jt="12" />
+			<index name="idx_TRIAL_VISITPD_TRIALVPD" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_VISITPD_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+		<table name="TRIAL_VISITPR" row_count="0" >
+			<column name="ID" type="nvarchar" length="10" decimal="0" jt="12" mandatory="y" />
+			<column name="DEFINITION" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="ISMAINPARTOFVISIT" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="ForcedCompleted" type="bit" length="1" decimal="0" jt="-7" mandatory="y" />
+			<column name="DATARETRIEVALRESULTCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="VISITCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<column name="TRIALCODE" type="nvarchar" length="10" decimal="0" jt="12" />
+			<index name="idx_TRIAL_VISITPR_Primaire_volgorde" unique="PRIMARY_KEY" >
+				<column name="ID" />
+			</index>
+			<index name="idx_TRIAL_VISITPR_MOMONDTRIN" unique="UNIQUE_INDEX" >
+				<column name="VISITCODE" />
+				<column name="ID" />
+			</index>
+			<fk name="fk_TRIAL_VISITPR_TRIAL_TRIAL" to_schema="HiX_Test.dbo" to_table="TRIAL_TRIAL" >
+				<fk_column name="TRIALCODE" pk="ID" />
+			</fk>
+		</table>
+	</schema>
+	<connector name="SqlServer" database="SqlServer" driver_class="com.microsoft.sqlserver.jdbc.SQLServerDriver" driver_jar="mssql-jdbc-12.2.0.jre11.jar" driver_desc="Windows Authentication" host="SQLCST2103" port="1433" instance="HiX_Test" user="tbruyns" passwd="VG9qb2JlamExIQ==" useSystemProxy="false" />
+	<layout name="Main Layout" id="Layout-19d9" joined_routing="y" show_relation="cascade" >
+		<comment><![CDATA[Main Layout]]></comment>
+		<entity schema="HiX_Test.dbo" name="TRIAL_ADVERSEEVENT" color="F4BEC4" x="1392" y="1296" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_ADVERSE_INDIC" color="F4BEC4" x="1696" y="1296" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADEF" color="E3BEF4" x="3184" y="624" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADPAR" color="E3BEF4" x="2704" y="1008" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADSUB" color="E3BEF4" x="3184" y="1008" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATAIGN" color="E3BEF4" x="3680" y="624" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATARES" color="E3BEF4" x="3680" y="1008" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATASETINGS" color="BEC6F4" x="2864" y="816" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATDEFCAT" color="BEC6F4" x="2896" y="624" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DDLINK" color="BEC6F4" x="2528" y="624" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DFIELD" color="BEC6F4" x="2800" y="416" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DSETRESLNK" color="BEC6F4" x="3184" y="432" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_EXPRTFLD" color="BEC6F4" x="3680" y="400" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_GROUP" color="F4BEC4" x="576" y="1296" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_LOCLNK" color="F4BEC4" x="688" y="544" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_METINGDATA" color="C7F4BE" x="336" y="128" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PARAM" color="F4BEC4" x="656" y="336" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PARTICIPANT" color="F4BEC4" x="1392" y="544" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATCOL" color="E3BEF4" x="2544" y="1696" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATCOLDEF" color="E3BEF4" x="2288" y="1696" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATSOU" color="E3BEF4" x="2000" y="1696" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PDDATAPA" color="BEC6F4" x="2000" y="624" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASE" color="F4BEC4" x="928" y="320" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASEGROUPJOIN" color="F4BEC4" x="1392" y="272" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASEP" color="F4BEC4" x="624" y="80" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PPCS" color="F4BEC4" x="928" y="96" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PRDADESET" color="BEC6F4" x="2800" y="80" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PRDATADEF" color="BEC6F4" x="2384" y="80" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_RESULT" color="F4BEC4" x="384" y="544" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIDEEFFECT" color="F4BEC4" x="400" y="320" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIMORDL" color="F4BEC4" x="48" y="336" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIMPAR" color="C7F4BE" x="48" y="2240" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SOLDEF" color="C7F4BE" x="464" y="2240" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SOLPAR" color="C7F4BE" x="48" y="1968" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SORDPARD" color="C7F4BE" x="464" y="1968" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SPECLNK" color="F4BEC4" x="48" y="544" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TEMPGROUP" color="F4BEC4" x="928" y="1664" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIAL" color="F4BEC4" x="928" y="544" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIALCAT" color="F4BEC4" x="368" y="1104" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIALREGNUM" color="F4BEC4" x="656" y="1088" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRTYPE" color="C7F4BE" x="144" y="1296" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TYPE" color="F4BEC4" x="928" y="1296" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_USINRL" color="F4BEC4" x="640" y="1664" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITD" color="BEC6F4" x="2400" y="2336" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITP" color="BEC6F4" x="2000" y="2336" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITPD" color="F4BEC4" x="2000" y="1968" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITPR" color="F4BEC4" x="2400" y="1968" />
+		<callout x="3040" y="784" pointer="SV" >
+			<comment><![CDATA[Nog uitzoeken]]></comment>
+		</callout>
+		<callout x="672" y="2416" pointer="SV" >
+			<comment><![CDATA[Gesimplificeerde gegevens voor .. ? ]]></comment>
+		</callout>
+		<callout x="3184" y="128" pointer="SV" >
+			<comment><![CDATA[Vermoedelijk referentietabellen, namen van in te vullen velden e.d.]]></comment>
+		</callout>
+		<group name="SIMPLE" color="C4E0F9" >
+			<entity schema="HiX_Test.dbo" name="TRIAL_SOLPAR" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_SORDPARD" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_SOLDEF" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_SIMPAR" />
+		</group>
+		<group name="PAT" color="C4E0F9" >
+			<entity schema="HiX_Test.dbo" name="TRIAL_PATSOU" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_PATCOLDEF" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_PATCOL" />
+		</group>
+		<group name="VISIT" color="C4E0F9" >
+			<entity schema="HiX_Test.dbo" name="TRIAL_VISITPD" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_VISITPR" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_VISITD" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_VISITP" />
+		</group>
+		<group name="DAT" color="C4E0F9" >
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATADSUB" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATAIGN" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATARES" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATADPAR" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATADEF" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATASETINGS" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DATDEFCAT" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DFIELD" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DSETRESLNK" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_EXPRTFLD" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_DDLINK" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_PRDATADEF" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_PRDADESET" />
+			<entity schema="HiX_Test.dbo" name="TRIAL_PDDATAPA" />
+		</group>
+	</layout>
+	<layout name="~Layout with Sample Tools" id="Layout-1d19" show_column_type="y" show_relation="columns" >
+		<entity schema="HiX_Test.dbo" name="TRIAL_ADVERSEEVENT" color="C7F4BE" x="3168" y="1184" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_ADVERSE_INDIC" color="C7F4BE" x="48" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADEF" color="C7F4BE" x="400" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADPAR" color="C7F4BE" x="944" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATADSUB" color="C7F4BE" x="944" y="1152" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATAIGN" color="C7F4BE" x="4240" y="160" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATARES" color="C7F4BE" x="4576" y="400" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATASETINGS" color="C7F4BE" x="4576" y="160" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DATDEFCAT" color="C7F4BE" x="3904" y="160" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DDLINK" color="C7F4BE" x="1984" y="48" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DFIELD" color="C7F4BE" x="2304" y="48" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_DSETRESLNK" color="C7F4BE" x="3536" y="160" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_EXPRTFLD" color="C7F4BE" x="1648" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_GROUP" color="C7F4BE" x="3872" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_LOCLNK" color="C7F4BE" x="2304" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_METINGDATA" color="C7F4BE" x="3536" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PARAM" color="C7F4BE" x="2096" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PARTICIPANT" color="C7F4BE" x="2432" y="976" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATCOL" color="C7F4BE" x="2432" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATCOLDEF" color="C7F4BE" x="4240" y="400" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PATSOU" color="C7F4BE" x="2848" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PDDATAPA" color="C7F4BE" x="1872" y="1968" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASE" color="C7F4BE" x="1984" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASEGROUPJOIN" color="C7F4BE" x="1648" y="1696" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PHASEP" color="C7F4BE" x="2272" y="480" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PPCS" color="C7F4BE" x="2096" y="976" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PRDADESET" color="C7F4BE" x="2016" y="1744" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_PRDATADEF" color="C7F4BE" x="2288" y="1744" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_RESULT" color="C7F4BE" x="1648" y="48" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIDEEFFECT" color="C7F4BE" x="240" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIMORDL" color="C7F4BE" x="560" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SIMPAR" color="C7F4BE" x="960" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SOLDEF" color="C7F4BE" x="1312" y="256" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SOLPAR" color="C7F4BE" x="2272" y="2464" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SORDPARD" color="C7F4BE" x="1872" y="2240" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_SPECLNK" color="C7F4BE" x="960" y="464" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TEMPGROUP" color="C7F4BE" x="4720" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIAL" color="C7F4BE" x="4224" y="768" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIALCAT" color="C7F4BE" x="3168" y="976" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRIALREGNUM" color="C7F4BE" x="2848" y="976" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TRTYPE" color="C7F4BE" x="4720" y="1344" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_TYPE" color="C7F4BE" x="4720" y="1520" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_USINRL" color="C7F4BE" x="672" y="464" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITD" color="C7F4BE" x="400" y="1152" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITP" color="C7F4BE" x="864" y="1472" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITPD" color="C7F4BE" x="1168" y="1472" />
+		<entity schema="HiX_Test.dbo" name="TRIAL_VISITPR" color="C7F4BE" x="816" y="1760" />
+		<script name="SQL Editor" id="Editor-9e7" language="SQL" >
+			<string><![CDATA[SELECT
+	ID, DESCRIPTION, ISRELEVANTTOTRIAL, TRIALCODE, ADVERSEEVENTTYPECODE, SIDEEFFECTCODE, PARTICIPANTCODE, INCIDENTONDATE, 
+	INCIDENTONTIME, REGISTEREDONDATE, REGISTEREDONTIME, LINKEDOBJECTCLASSID, LINKEDOBJECTID, ORDERWORKFLOWSTATUS, ORDERWORKFLOW, 
+	EndDateTime, DATADEFINITION, MANUALLYADDED, REVIEWED, DEPRECATED
+FROM
+	HiX_Test.dbo.TRIAL_ADVERSEEVENT T;
+GO]]></string>
+		</script>
+		<browser id="Browse-497" name="Relational Data Explorer" confirm_updates="y" >
+			<browse_table schema="HiX_Test.dbo" entity="TRIAL_ADVERSEEVENT" x="-2147483648" y="-2147483648" width="-2147483648" height="-2147483648" />
+		</browser>
+		<query id="Query-734" name="Query Builder" >
+			<query_table schema="HiX_Test.dbo" name="TRIAL_ADVERSEEVENT" alias="ta" x="48" y="48" >
+				<column name="ID" />
+				<column name="DESCRIPTION" />
+				<column name="ISRELEVANTTOTRIAL" />
+				<column name="TRIALCODE" />
+				<column name="ADVERSEEVENTTYPECODE" />
+				<column name="SIDEEFFECTCODE" />
+				<column name="PARTICIPANTCODE" />
+				<column name="INCIDENTONDATE" />
+				<column name="INCIDENTONTIME" />
+				<column name="REGISTEREDONDATE" />
+				<column name="REGISTEREDONTIME" />
+				<column name="LINKEDOBJECTCLASSID" />
+				<column name="LINKEDOBJECTID" />
+				<column name="ORDERWORKFLOWSTATUS" />
+				<column name="ORDERWORKFLOW" />
+				<column name="EndDateTime" />
+				<column name="DATADEFINITION" />
+				<column name="MANUALLYADDED" />
+				<column name="REVIEWED" />
+				<column name="DEPRECATED" />
+			</query_table>
+		</query>
+		<form name="Report" id="Report-1ee8" template="Page" css="container-fluid" view="frame" >
+			<var name="samplePageNumber" type="4" value="0" mandatory="n" />
+			<var name="sampleRecordsPerPage" type="4" value="100" mandatory="n" />
+			<body name="Body" template="Grid" pos="0,0,0,0,f,f" layout="{{-2,-2,-2,-2,-1},{-2,-2,-2,-2}}" scroll="n" html="n" >
+				<cell type="label" name="Trial_adverseevent Data" template="H3" pos="0,0,1,0,l,c" />
+				<cell type="chart" name="Pie" template="Pie" pos="0,1,4,1,l,c" max_records="20" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="ID" type="-1" />
+						<var name="DESCRIPTION" type="-1" />
+						<var name="ISRELEVANTTOTRIAL" type="-7" />
+						<var name="TRIALCODE" type="-1" />
+						<var name="ADVERSEEVENTTYPECODE" type="-1" />
+						<var name="SIDEEFFECTCODE" type="-1" />
+						<var name="PARTICIPANTCODE" type="-1" />
+						<var name="INCIDENTONDATE" type="92" />
+						<var name="INCIDENTONTIME" type="-1" />
+						<var name="REGISTEREDONDATE" type="92" />
+						<var name="REGISTEREDONTIME" type="-1" />
+						<var name="LINKEDOBJECTCLASSID" type="-1" />
+						<var name="LINKEDOBJECTID" type="-1" />
+						<var name="ORDERWORKFLOWSTATUS" type="-1" />
+						<var name="ORDERWORKFLOW" type="-1" />
+						<var name="EndDateTime" type="92" />
+						<var name="DATADEFINITION" type="-1" />
+						<var name="MANUALLYADDED" type="-7" />
+						<var name="REVIEWED" type="-7" />
+						<var name="DEPRECATED" type="-7" />
+						<script ><![CDATA[SELECT * FROM HiX_Test.dbo.TRIAL_ADVERSEEVENT]]></script>
+					</form_script>
+					<param name="item" value="ID" />
+					<param name="width" value="100%" />
+					<param name="title" value="Sample Chart" />
+					<param name="height" value="400px" />
+				</cell>
+				<tableview name="sample" template="Table" css="table table-striped table-sm table-hover" pos="0,2,4,2,f,f" layout="{{-2,-2,-2,-2,-2,-2,-2},{-2,-2}}" scroll="n" html="n" header_rows="1" >
+					<form_script type="DataSource" language="SQL" >
+						<var name="ID" type="-1" />
+						<var name="DESCRIPTION" type="-1" />
+						<var name="ISRELEVANTTOTRIAL" type="-7" />
+						<var name="TRIALCODE" type="-1" />
+						<var name="ADVERSEEVENTTYPECODE" type="-1" />
+						<var name="SIDEEFFECTCODE" type="-1" />
+						<var name="PARTICIPANTCODE" type="-1" />
+						<var name="INCIDENTONDATE" type="92" />
+						<var name="INCIDENTONTIME" type="-1" />
+						<var name="REGISTEREDONDATE" type="92" />
+						<var name="REGISTEREDONTIME" type="-1" />
+						<var name="LINKEDOBJECTCLASSID" type="-1" />
+						<var name="LINKEDOBJECTID" type="-1" />
+						<var name="ORDERWORKFLOWSTATUS" type="-1" />
+						<var name="ORDERWORKFLOW" type="-1" />
+						<var name="EndDateTime" type="92" />
+						<var name="DATADEFINITION" type="-1" />
+						<var name="MANUALLYADDED" type="-7" />
+						<var name="REVIEWED" type="-7" />
+						<var name="DEPRECATED" type="-7" />
+						<script ><![CDATA[SELECT * FROM HiX_Test.dbo.TRIAL_ADVERSEEVENT]]></script>
+					</form_script>
+					<cell type="label" name="ID" template="Plain" pos="0,0,0,0,c,c" />
+					<cell type="label" name="DESCRIPTION" template="Plain" pos="1,0,1,0,c,c" />
+					<cell type="label" name="ISRELEVANTTOTRIAL" template="Plain" pos="2,0,2,0,c,c" />
+					<cell type="label" name="TRIALCODE" template="Plain" pos="3,0,3,0,c,c" />
+					<cell type="label" name="ADVERSEEVENTTYPECODE" template="Plain" pos="4,0,4,0,c,c" />
+					<cell type="label" name="SIDEEFFECTCODE" template="Plain" pos="5,0,5,0,c,c" />
+					<cell type="label" name="${ID}" template="Plain" pos="0,1,0,1,l,c" />
+					<cell type="label" name="${DESCRIPTION}" template="Plain" pos="1,1,1,1,l,c" />
+					<cell type="label" name="${ISRELEVANTTOTRIAL}" template="Plain" pos="2,1,2,1,l,c" />
+					<cell type="label" name="${TRIALCODE}" template="Plain" pos="3,1,3,1,l,c" />
+					<cell type="label" name="${ADVERSEEVENTTYPECODE}" template="Plain" pos="4,1,4,1,l,c" />
+					<cell type="label" name="${SIDEEFFECTCODE}" template="Plain" pos="5,1,5,1,l,c" />
+					<cell type="button" name="More" template="Plain" css="btn btn-sm btn-secondary" pos="6,1,6,1,c,c" ref_id="Report-1ee8" />
+				</tableview>
+				<cell type="href" name="" template="Plain" disabled="${samplePageNumber&lt;1}" pos="0,3,0,3,l,c" glyph="bi-chevron_double_left" ref_id="Report-1ee8" >
+					<var name="samplePageNumber" value="0" />
+				</cell>
+				<cell type="href" name="" template="Plain" disabled="${samplePageNumber&lt;1}" pos="1,3,1,3,l,c" glyph="bi-chevron_left" ref_id="Report-1ee8" >
+					<var name="samplePageNumber" value="${Math.max(0,samplePageNumber-1)}" />
+				</cell>
+				<cell type="label" name="Page ${samplePageNumber+1}" template="Plain" pos="2,3,2,3,l,c" />
+				<cell type="href" name="" template="Plain" disabled="${!sampleHasNextPage}" pos="3,3,3,3,l,c" glyph="bi-chevron_right" ref_id="Report-1ee8" >
+					<var name="samplePageNumber" value="${( samplePageNumber+1 )}" />
+				</cell>
+			</body>
+		</form>
+	</layout>
+</project>
