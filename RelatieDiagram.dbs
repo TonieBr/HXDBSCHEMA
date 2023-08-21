@@ -807,7 +807,7 @@
 		<callout x="3184" y="128" pointer="SV" >
 			<comment><![CDATA[Vermoedelijk referentietabellen, namen van in te vullen velden e.d.]]></comment>
 		</callout>
-		<callout x="432" y="2144" pointer="SV" >
+		<callout x="432" y="2176" pointer="SV" >
 			<comment><![CDATA[Gesimplificeerde gegevens voor .. ? ]]></comment>
 		</callout>
 		<group name="SIMPLE" color="C4E0F9" >
