@@ -804,11 +804,11 @@
 		<callout x="3040" y="784" pointer="SV" >
 			<comment><![CDATA[Nog uitzoeken]]></comment>
 		</callout>
-		<callout x="672" y="2416" pointer="SV" >
-			<comment><![CDATA[Gesimplificeerde gegevens voor .. ? ]]></comment>
-		</callout>
 		<callout x="3184" y="128" pointer="SV" >
 			<comment><![CDATA[Vermoedelijk referentietabellen, namen van in te vullen velden e.d.]]></comment>
+		</callout>
+		<callout x="432" y="2176" pointer="SV" >
+			<comment><![CDATA[Gesimplificeerde gegevens voor .. ? ]]></comment>
 		</callout>
 		<group name="SIMPLE" color="C4E0F9" >
 			<entity schema="HiX_Test.dbo" name="TRIAL_SOLPAR" />
